@@ -1,0 +1,20 @@
+menu "Otool ESP Hosted FW Update"
+
+config OTOOL_ESP_HOSTED_FW_CHUNK_SIZE
+    int "Firmware OTA chunk size"
+    range 256 4096
+    default 1024
+
+config OTOOL_ESP_HOSTED_FW_TRANSPORT_ESP_HOSTED
+    bool "Enable esp_hosted transport"
+    default y
+
+config OTOOL_ESP_HOSTED_FW_PROVIDER_EMBEDDED
+    bool "Enable embedded firmware provider"
+    default n
+
+config OTOOL_ESP_HOSTED_FW_ENABLE_COMPAT_API
+    bool "Enable otool_esp_hosted_wifi_firmware_ota compatibility API"
+    default n
+
+endmenu
