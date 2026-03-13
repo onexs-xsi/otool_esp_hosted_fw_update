@@ -14,6 +14,12 @@ class OtoolEspHostedFwProvider {
 public:
     virtual ~OtoolEspHostedFwProvider() = default;
     virtual esp_err_t get_blob(const char *firmware_name, otool_esp_hosted_fw_blob_t &blob) = 0;
+    // 返回当前 provider 持有的固件条目数量（默认 0）
+    virtual size_t firmware_count() const { return 0; }
+    // 返回第 index 个固件的 name（超界返回 nullptr）
+    virtual const char *firmware_name_at(size_t index) const { (void)index; return nullptr; }
+    // 返回第 index 个固件的原始文件名；若无单独信息则退化为 firmware_name_at()
+    virtual const char *firmware_original_name_at(size_t index) const { return firmware_name_at(index); }
 };
 
 class OtoolEspHostedFwTransport {
@@ -33,6 +39,9 @@ public:
 class OtoolEspHostedFwEmbeddedProvider final : public OtoolEspHostedFwProvider {
 public:
     esp_err_t get_blob(const char *firmware_name, otool_esp_hosted_fw_blob_t &blob) override;
+    size_t firmware_count() const override;
+    const char *firmware_name_at(size_t index) const override;
+    const char *firmware_original_name_at(size_t index) const override;
 };
 
 class OtoolEspHostedFwStubTransport final : public OtoolEspHostedFwTransport {

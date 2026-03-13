@@ -1,5 +1,5 @@
 dependencies:
   idf:
     version: ">=5.5.0"
-  espressif/esp_hosted: ^2.7.3
+  espressif/esp_hosted: ^2.12.1
 
