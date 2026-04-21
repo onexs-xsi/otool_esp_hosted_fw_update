@@ -71,3 +71,12 @@ const char *OtoolEspHostedFwEmbeddedProvider::firmware_name_at(size_t index) con
     return s_esp_hosted_fw_table[index].name;
 }
 
+const char *OtoolEspHostedFwEmbeddedProvider::firmware_original_name_at(size_t index) const
+{
+    const size_t count = sizeof(s_esp_hosted_fw_table) / sizeof(s_esp_hosted_fw_table[0]);
+    if (index >= count) {
+        return nullptr;
+    }
+    return s_esp_hosted_fw_table[index].original_name;
+}
+

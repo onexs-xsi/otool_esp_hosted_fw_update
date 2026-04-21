@@ -3,7 +3,9 @@
 #include "esp_err.h"
 
 static OtoolEspHostedFwStubProvider s_stub_provider;
+#if CONFIG_OTOOL_ESP_HOSTED_FW_PROVIDER_EMBEDDED
 static OtoolEspHostedFwEmbeddedProvider s_embedded_provider;
+#endif
 static OtoolEspHostedFwStubTransport s_stub_transport;
 static OtoolEspHostedFwEspHostedTransport s_esp_hosted_transport;
 
