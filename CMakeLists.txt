@@ -103,3 +103,10 @@ idf_component_register(
     PRIV_REQUIRES esp_hosted nvs_flash esp_event esp_netif esp_wifi console
     EMBED_FILES ${OTOOL_ESP_HOSTED_FW_UPDATE_EMBED_FILES}
 )
+
+# esp_wifi_default_config.h 的 CONFIG_WIFI_RMT_* 宏依赖 CONFIG_SLAVE_IDF_TARGET_*
+# 当 sdkconfig 未启用 esp_wifi_remote（IS_DISABLED=y）时这些宏不会被生成，
+# 需要手动指定协处理器目标为 ESP32-C6。
+target_compile_definitions(__idf_otool_esp_hosted_fw_update PRIVATE
+    CONFIG_SLAVE_IDF_TARGET_ESP32C6=1
+)
