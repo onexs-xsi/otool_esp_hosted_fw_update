@@ -5,6 +5,14 @@ config OTOOL_ESP_HOSTED_FW_CHUNK_SIZE
     range 256 4096
     default 1024
 
+config OTOOL_ESP_HOSTED_FW_FAIL_ON_HOST_NEWER_MAJOR_MINOR
+    bool "Fail OTA when host major.minor is newer than slave"
+    default n
+    help
+        If enabled, abort OTA when the host ESP-Hosted major.minor version is
+        newer than the currently running slave version. This prevents entering
+        a transfer path known to be risky for mismatched protocol revisions.
+
 config OTOOL_ESP_HOSTED_FW_TRANSPORT_ESP_HOSTED
     bool "Enable esp_hosted transport"
     default y
